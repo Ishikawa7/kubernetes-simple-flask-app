@@ -1,7 +1,7 @@
 from flask import Flask, request
 import random
 import http.client
-# TODO use "import request" instead of http.cliet
+# TODO use "request" module instead of http.cliet
 
 app = Flask(__name__)
 
