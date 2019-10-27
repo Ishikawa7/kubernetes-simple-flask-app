@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-load-balancer-service
+  #labels:
+    #component: frontend
+spec:
+  selector:
+    component: frontend
+  ports:
+    - port: 80
+      targetPort: 80
+  # externalTrafficPolicy: Local
+  type: LoadBalancer
+  #externalIPs:
+  #- 192.168.99.104 #<IP of the minikube virtual machine>
