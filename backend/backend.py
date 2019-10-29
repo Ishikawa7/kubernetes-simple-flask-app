@@ -1,11 +1,11 @@
-from flask import Flask
+from flask import Flask, request
 import http.client
-#import redis
+import redis
 
 app = Flask(__name__)
 
 # TODO Set the redis host
-#redis = redis.Redis(host="myredis-server")
+r = redis.Redis(host="redis-cluster-ip-service")
 
 def count_primes(num = 100000):
     if num < 2:
@@ -28,9 +28,10 @@ def cpuintensive():
     return count_primes()
     
 
-#@app.route('/bep2')
-#def redisCall():
-#    redis.incr("counter")
+@app.route('/bep2', methods=['POST'])
+def redisCall():
+    r.Set("bodyReceived",str(request.data))
+    return("Successfull!")
 
 if __name__ == "__main__":
     app.run(debug=True,host='0.0.0.0', port=5000)

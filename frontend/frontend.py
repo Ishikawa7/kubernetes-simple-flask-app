@@ -28,7 +28,7 @@ def saveondatabase():
     # TODO set a larger timeout for the http request
     # TODO add a request body
     connection = http.client.HTTPConnection("backend-cluster-ip-service",port=5000,timeout=100)
-    connection.request("POST", "/bep2", body = request.data)
+    connection.request("POST", "/bep2", body = str(request.data))
     response = connection.getresponse()
     print("Status: {} and reason: {}".format(response.status, response.reason))
 
